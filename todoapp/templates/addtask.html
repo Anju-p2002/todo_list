@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Task</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f5f7fb;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background: #fff;
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar li {
+    list-style: none;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.sidebar .active {
+    background: #e6fffa;
+    border-radius: 8px;
+}
+
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+.form-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.row {
+    display: flex;
+    gap: 25px;
+}
+
+.row div {
+    flex: 1;
+}
+
+.priority span {
+    padding: 6px 12px;
+    border-radius: 10px;
+    margin-right: 8px;
+}
+
+.low { background: #c6f6d5; }
+.medium { background: #fbd38d; }
+.high { background: #feb2b2; }
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    margin-right: 10px;
+}
+
+.create {
+    background: #2d4f6c;
+    color: white;
+}
+
+.cancel {
+    background: #e6fffa;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="sidebar">
+    
+    <h2>✔ Todo Web</h2>
+    <ul>
+        <li>Overview</li>
+        <li class="active">Tasks</li>
+        <li>Categories</li>
+        <li>Calendar</li>
+    </ul>
+</div>
+
+<div class="main">
+
+<h2>Create New Task</h2>
+
+<div class="form-box">
+
+<form method="POST">
+{% csrf_token %}
+
+<label>Task Title</label>
+{{ form.title }}
+
+<label>Description</label>
+{{ form.description }}
+
+
+    <h1>Details</h1>
+
+<div class="row">
+    <div>
+
+        <label>Due Date</label>
+        {{ form.due_date }}
+    </div>
+
+    <div>
+        <label>Time</label>
+        {{ form.time }}
+    </div>
+
+    <div>
+
+        <label>Category</label>
+        {{ form.category }}
+        
+    </div>
+
+    <div>
+        <label>Priority</label>
+        {{ form.priority }}
+    </div>
+</div>
+
+<button type="submit" class="btn create">Create Task</button>
+<a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

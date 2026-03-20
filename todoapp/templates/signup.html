@@ -1,0 +1,15 @@
+<h2>Signup</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="email" placeholder="Email">
+
+<input type="password" name="password" placeholder="Password">
+
+<button>Create Account</button>
+
+</form>
+
+<a href="/">Login</a>
