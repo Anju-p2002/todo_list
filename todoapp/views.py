@@ -8,8 +8,7 @@ from .forms import TaskForm
 
 # # Create your views here.
 
-def example(request):
-    return render(request,'example.html')
+
 
 def card(request):
         if request.method == "POST":
@@ -32,22 +31,23 @@ def signup_view(request):
 
     if request.method == "POST":
 
-        username = request.POST.get("email")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
         password = request.POST.get("password")
 
-        User.objects.create_user(username=username,password=password)
+        User.objects.create_user(username=username,email=email,password=password)
 
-        return redirect("login")
+        return redirect("card")
 
     return render(request,"signup.html")
 
 
-def dashboard(request):
+# def dashboard(request):
 
-    if not request.user.is_authenticated:
-        return redirect("login")
+#     if not request.user.is_authenticated:
+#         return redirect("card")
 
-    return render(request,"dashboard.html")
+#     return render(request,"dashboard.html")
 
 
 def logout_view(request):
@@ -91,3 +91,27 @@ def addtask(request):
         form = TaskForm()
 
     return render(request, 'addtask.html', {'form': form})
+
+def updatetask(request, task_id):
+    task = Task.objects.get(id=task_id)
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = TaskForm(instance=task)
+
+    return render(request, 'updatetask.html', {'form': form})
+
+def uprec(request, task_id):
+    task = Task.objects.get(id=task_id)
+    task.is_completed = True
+    task.save()
+    return redirect('dashboard')
+
+def deletetask(request, task_id):
+    task = Task.objects.get(id=task_id)
+    task.delete()
+    return redirect('dashboard')

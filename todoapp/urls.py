@@ -3,13 +3,14 @@ from . import views
 
 
 urlpatterns = [
-    path('example/',views.example,name="example"),
     path('',views.card,name="card"),
-    # path('login/', views.login_view, name="login"),
     path('signup/', views.signup_view, name="signup"),
     path('dashboard/', views.dashboard, name="dashboard"),
     path('logout/', views.logout_view, name="logout"),
     path('create/', views.addtask, name='addtask'),
+    path('updatetask/<int:task_id>/',views.updatetask,name='updatetask'),
+    path('updatetask/uprec/<int:task_id>/',views.uprec,name='uprec'),
+    path('delete/<int:task_id>/',views.deletetask,name='deletetask')
 
 
 ]

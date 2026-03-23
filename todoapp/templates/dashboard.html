@@ -166,198 +166,218 @@ body{
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Todo Dashboard</title>
+    <title>Todo Dashboard</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #f5f7fb;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f7fb;
+        }
 
-.container {
-    display: flex;
-}
+        .container {
+            display: flex;
+        }
 
-/* Sidebar */
-.sidebar {
-    width: 220px;
-    background: #fff;
-    height: 100vh;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-}
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #fff;
+            height: 100vh;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
 
-.sidebar h2 {
-    color: #2c7a7b;
-}
+        .sidebar h2 {
+            color: #2c7a7b;
+        }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-.sidebar li {
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-}
+        .sidebar li {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
 
-.sidebar li.active {
-    background: #e6fffa;
-}
+        .sidebar li.active {
+            background: #e6fffa;
+        }
 
-.main {
-    flex: 1;
-    padding: 30px;
-}
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
 
-.cards {
-    display: flex;
-    gap: 20px;
-}
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
 
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.card p {
-    font-size: 28px;
-    font-weight: bold;
-}
+        .card p {
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-.tasks {
-    margin-top: 30px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+        .tasks {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
 
-}
+        }
 
-.task {
-    display: flex;
-    align-items:center;
-    justify-content:space-between;
-    padding: 10px;
-    border-bottom: 1px solid #cec9c9;
-    border-radius: 10px;
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #cec9c9;
+            border-radius: 10px;
 
-}
+        }
 
-.btn {
-    float: right;
-    background: #2d4f6c;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-}
-.btn1{
-    background: #a1c9ed;
-    color: rgb(39, 33, 33);
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    margin-top: 20px;
-}
+        .btn {
+            float: right;
+            background: #2d4f6c;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+        }
 
-.modal {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-}
+        .btn1 {
+            background: #a1c9ed;
+            color: rgb(39, 33, 33);
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 20px;
+        }
 
-.modal-content {
-    background: white;
-    width: 300px;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-}
-h2{
-    color: #316386;
-}
-</style>
+        .modal {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background: white;
+            width: 300px;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #316386;
+        }
+
+        .con {
+            float: right;
+            color: rgb(12, 11, 11);
+            border: none;
+        }
+
+        
+    </style>
 
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img src="https://i.pinimg.com/736x/69/d9/4f/69d94fa9277f58352c486fb727377245.jpg" width="25px" height="30px" alt="">
+    <div class="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img src="https://i.pinimg.com/736x/69/d9/4f/69d94fa9277f58352c486fb727377245.jpg" width="25px"
+                height="30px" alt="">
 
-        <h2> Todo <br>
-             Web</h2>
+            <h2 class="head"> Todo Web</h2>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <h2>contact</h2>
-    
-  </div>
-</nav>
-
-<div class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <h2 class="con">contact</h2>
+<hr>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
 
         <div class="sidebar">
 
 
-            
-        <ul>
-            <li class="active">Overview</li>
-            <li>Tasks</li>
-            <li>Categories</li>
-            <li>Calendar</li>
-        </ul>
-        <button class="btn1"><a href="{% url 'logout' %}">logout</a></button>
-    </div>
 
-    <div class="main">
-
-        <h1>Welcome back {{ user.username }}!</h1>
-
-        <div class="cards">
-            <div class="card">
-                <h3>Active Tasks</h3>
-                <p>{{ active_tasks }}</p>
-            </div>
-
-            <div class="card">
-                <h3>Completed Tasks</h3>
-                <p>{{ completed_tasks }}</p>
-            </div>
-
-            <div class="card">
-                <h3>Categories</h3>
-                <p>{{ categories }}</p>
-            </div>
-        </div>
-        
-       
-
-        <div class="tasks">
-            <h2>Upcoming Tasks
-
-                <a href="{% url 'addtask' %}"><button class="btn">+ New Task</button></a>
-                
-
-            </h2>
-
-
-            {% for task in tasks %}
-            <div class="task">
-                <span>✔ {{ task.title }}</span>
-                <span>{{ task.category }}</span>
-                <span>{{ task.due_date }}</span>
-            </div>
-            {% endfor %}
+            <ul>
+                <li class="active">Overview</li>
+                <li>Tasks</li>
+                <li>Categories</li>
+                <li>Calendar</li>
+            </ul>
+            <button class="btn1"><a href="{% url 'logout' %}">logout</a></button>
         </div>
 
+        <div class="main">
+
+            <h1>Welcome back {{ user.username }}!</h1>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Active Tasks</h3>
+                    <p>{{ active_tasks }}</p>
+                </div>
+
+                <div class="card">
+                    <h3>Completed Tasks</h3>
+                    <p>{{ completed_tasks }}</p>
+                </div>
+
+                <div class="card">
+                    <h3>Categories</h3>
+                    <p>{{ categories }}</p>
+                </div>
+            </div>
+
+
+
+            <div class="tasks">
+                <h2>Upcoming Tasks
+
+                    <a href="{% url 'addtask' %}"><button class="btn">+ New Task</button></a>
+
+
+                </h2>
+
+
+                {% for task in tasks %}
+                <div class="task">
+                    <span>{{ task.title }}</span>
+                    <span>{{ task.category }}</span>
+                    <span>{{ task.due_date }}</span>
+                </div>
+                <a href="{% url 'updatetask' task.id %}">
+                    <button class="btn3">Update</button>
+                </a>
+                <a href="{% url 'deletetask' task.id %}">
+                    <button class="btn4">Delete</button>
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
