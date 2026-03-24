@@ -42,14 +42,6 @@ def signup_view(request):
     return render(request,"signup.html")
 
 
-# def dashboard(request):
-
-#     if not request.user.is_authenticated:
-#         return redirect("card")
-
-#     return render(request,"dashboard.html")
-
-
 def logout_view(request):
 
     logout(request)
@@ -86,11 +78,13 @@ def addtask(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
+            
             return redirect('dashboard')
     else:
         form = TaskForm()
 
     return render(request, 'addtask.html', {'form': form})
+
 
 def updatetask(request, task_id):
     task = Task.objects.get(id=task_id)

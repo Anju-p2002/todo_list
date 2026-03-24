@@ -6,30 +6,24 @@
     <title>Update</title>
 </head>
 <body>
-    <form action="{% url 'updatetask' task.id %}" method="post" enctype="multipart/form-data">
+    <div class="box">
+    <form action= 'updatetask/uprec/(taks_id)'  method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" value="{{ task.title }}">
         <label for="description">Description:</label>
-        <textarea id="description" name="description">{{ task.description }}</textarea>
+        <input type="text" id="description" name="description" value="{{ task.description }}">
         <label for="due_date">Due Date:</label>
         <input type="date" id="due_date" name="due_date" value="{{ task.due_date }}">
         <label for="time">Time:</label>
         <input type="time" id="time" name="time" value="{{ task.time }}">
         <label for="category">Category:</label>
-        <select id="category" name="category">
-            <option value="personal" {% if task.category="personal" %}selected{% endif %}>Personal</option>
-            <option value="work" {% if task.category = "work" %}selected{% endif %}>Work</option>
-            <option value="home" {% if task.category = "home" %}selected{% endif %}>Home</option>
-            <option value="client" {% if task.category = "client" %}selected{% endif %}>Client</option>
-        </select>
+        <input type="category" id="category" name="category" value="{{ task.category}}">
         <label for="priority">Priority:</label>
-        <select id="priority" name="priority">
-            <option value="low" {% if task.priority = "low" %}selected{% endif %}>Low</option>
-            <option value="medium" {% if task.priority = "medium" %}selected{% endif %}>Medium</option>
-            <option value="high" {% if task.priority = "high" %}selected{% endif %}>High</option>
-        </select>
+        <input type="priority" id="priority" name="priority" value="{{ task.priority }}">
+       <br>
         <button type="submit" class="btn btn-lg btn-success">Update</button>
     </form>
+    </div>
 </body>
 </html>
