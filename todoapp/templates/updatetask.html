@@ -4,24 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update</title>
+    <style>
+        button{
+             background-color: #a1c9ed;
+            color: #316386;
+        }
+    </style>
 </head>
 <body>
     <div class="box">
-    <form action= 'updatetask/uprec/(taks_id)'  method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+        <h1>UPDATE</h1>
+    <form action="{% url 'uprec' task.id %}" method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" value="{{ task.title }}">
+        <br><br>
         <label for="description">Description:</label>
         <input type="text" id="description" name="description" value="{{ task.description }}">
+
+                <h1>Details</h1>
+
         <label for="due_date">Due Date:</label>
         <input type="date" id="due_date" name="due_date" value="{{ task.due_date }}">
         <label for="time">Time:</label>
         <input type="time" id="time" name="time" value="{{ task.time }}">
         <label for="category">Category:</label>
-        <input type="category" id="category" name="category" value="{{ task.category}}">
+        <select name="category" id="category" >
+            <option value="work" {% if task.category == 'work' %}selected{% endif %}>Work</option>
+            <option value="person" {% if task.category == 'person' %}selected{% endif %}>Person</option>
+            <option value="client" {% if task.category == 'client' %}selected{% endif %}>Client</option>
+            <option value="home" {% if task.category == 'home' %}selected{% endif %}>Home</option>
+        </select>
+        
         <label for="priority">Priority:</label>
-        <input type="priority" id="priority" name="priority" value="{{ task.priority }}">
-       <br>
+        <select name="priority" id="priority">
+            <option value="low" {% if task.priority == 'low' %}selected{% endif %}>Low</option>
+            <option value="medium" {% if task.priority == 'medium' %}selected{% endif %}>Medium</option>
+            <option value="high" {% if task.high == 'high' %}selected{% endif %}>High</option>
+        </select>
+
+
+       <br><br>
         <button type="submit" class="btn btn-lg btn-success">Update</button>
     </form>
     </div>

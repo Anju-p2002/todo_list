@@ -181,7 +181,6 @@ body{
             display: flex;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 220px;
             background: #fff;
@@ -260,15 +259,24 @@ body{
         }
 
         .btn1 {
-            background: #a1c9ed;
-            color: rgb(39, 33, 33);
+            background: #165899;
+            color: rgb(219, 223, 228);
             padding: 10px;
             border-radius: 10px;
             border: none;
             margin-top: 20px;
+            
         }
-
-        .modal {
+        .btn3{
+            background-color: #a1c9ed;
+            color: #316386;
+        }
+        .btn4{
+            background-color: #2d4f6c;
+            color: #a1c9ed;
+        }
+        
+         .modal {
             display: none;
             position: fixed;
             width: 100%;
@@ -305,12 +313,9 @@ body{
             <img src="https://i.pinimg.com/736x/69/d9/4f/69d94fa9277f58352c486fb727377245.jpg" width="25px"
                 height="30px" alt="">
 
-            <h2 class="head"> Todo Web</h2>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <h2 class="con">contact</h2>
+            <h2 class="head">Todo Web</h2>
 <hr>
-            </div>
+            
         </nav>
     </div>
     <div class="container">
@@ -325,7 +330,11 @@ body{
                 <li>Categories</li>
                 <li>Calendar</li>
             </ul>
-            <button class="btn1"><a href="{% url 'logout' %}">logout</a></button>
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button class="btn1">Logout</button>
+
+            </form>
         </div>
 
         <div class="main">
@@ -346,7 +355,9 @@ body{
                 <div class="card">
                     <h3>Categories</h3>
                     <p>{{ categories }}</p>
-                </div>
+
+                    
+        </div>
             </div>
 
 
@@ -373,6 +384,7 @@ body{
                 <a href="{% url 'deletetask' task.id %}">
                     <button class="btn4">Delete</button>
                 </a>
+                
                 {% endfor %}
             </div>
 

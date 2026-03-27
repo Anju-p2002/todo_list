@@ -40,6 +40,7 @@ body {
     background: white;
     padding: 25px;
     border-radius: 12px;
+    height:100%;
 }
 
 input, textarea, select {
@@ -53,7 +54,7 @@ input, textarea, select {
 
 .row {
     display: flex;
-    gap: 25px;
+    gap: 30px;
 }
 
 .row div {
@@ -66,9 +67,6 @@ input, textarea, select {
     margin-right: 8px;
 }
 
-.low { background: #c6f6d5; }
-.medium { background: #fbd38d; }
-.high { background: #feb2b2; }
 
 .btn {
     padding: 10px 20px;
@@ -84,6 +82,10 @@ input, textarea, select {
 
 .cancel {
     background: #e6fffa;
+}
+.box{
+    height: 100px;
+    padding: auto;
 }
 </style>
 
@@ -109,45 +111,52 @@ input, textarea, select {
 
 <div class="form-box">
 
-<form method="POST">
+<form method="POST" action="" enctype="multipart/form-data">
 {% csrf_token %}
 
-<label>Task Title</label>
-{{ form.title }}
+    <label>Task Title</label>
+    <input type="text" placeholder="eg.,Q2 Planning">
 
-<label>Description</label>
-{{ form.description }}
+    <label>Description</label>
+    <input type="text" placeholder="Add details..." class="box">
 
 
     <h1>Details</h1>
 
-<div class="row">
+    <div class="row">
     <div>
 
-        <label>Due Date</label>
-        {{ form.due_date }}
+        <label for="dob">Due date</label>
+        <input type="date" id="dob" name="dob">
     </div>
 
     <div>
         <label>Time</label>
-        {{ form.time }}
+        <input type="time">
     </div>
 
     <div>
-
         <label>Category</label>
-        {{ form.category }}
-        
+        <select id="category" name="category">
+            <option value="">-- Manage Categories --</option>
+            <option value="client">Client</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Home">Home</option>
+        </select>
     </div>
-
     <div>
         <label>Priority</label>
-        {{ form.priority }}
+        <select id="priority" name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
     </div>
+    
 </div>
 
-<button type="submit" class="btn create">Create Task</button>
-<a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
+    <button type="submit" class="btn create">Create Task</button>
+    <a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
 
 </form>
 
@@ -156,6 +165,5 @@ input, textarea, select {
 </div>
 
 </div>
-
 </body>
 </html>

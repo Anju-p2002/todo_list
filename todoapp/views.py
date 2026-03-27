@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Task, Category
+from django.contrib.auth.decorators import login_required
+from .models import Task,Category
 from .forms import TaskForm
-
 
 
 # # Create your views here.
@@ -41,14 +41,13 @@ def signup_view(request):
 
     return render(request,"signup.html")
 
-
 def logout_view(request):
 
     logout(request)
 
     return redirect("card")
 
-
+@login_required
 def dashboard(request):
     tasks = Task.objects.all()
 
@@ -89,15 +88,15 @@ def addtask(request):
 def updatetask(request, task_id):
     task = Task.objects.get(id=task_id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
             return redirect('dashboard')
     else:
-        form = TaskForm(instance=task)
+        form = TaskForm()
 
-    return render(request, 'updatetask.html', {'form': form})
+    return render(request, 'updatetask.html', {'form':form,'task':task})
 
 def uprec(request, task_id):
     task = Task.objects.get(id=task_id)
@@ -109,3 +108,7 @@ def deletetask(request, task_id):
     task = Task.objects.get(id=task_id)
     task.delete()
     return redirect('dashboard')
+
+def completetask(request):
+    
+ return render(request,'completetask.html')
