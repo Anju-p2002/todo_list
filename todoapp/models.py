@@ -1,10 +1,13 @@
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
+
+
 
 
 class Task(models.Model):
@@ -14,15 +17,15 @@ class Task(models.Model):
         ('High', 'High'),
     ]
 
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    due_date = models.DateField()
-    time = models.TimeField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True,blank=True)
-    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='Low')
-    is_completed = models.BooleanField(default=False)
+   
 
-    
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    due_date = models.DateField(null=True,blank=True)
+    time = models.TimeField(null=True,blank=True)
+    category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
+    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
+    is_completed =models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

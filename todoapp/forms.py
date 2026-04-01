@@ -5,11 +5,11 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
 
-        fields =['title','description','due_date','time','category','priority']
+        fields ='__all__'
         
-        widgets = {
+        # widgets = {
             
-            'due_date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'})
-        }
+        #     'due_date': forms.DateInput(attrs={'type': 'date'}),
+        #     'time': forms.TimeInput(attrs={'type': 'time'})
+        # }
         

@@ -183,15 +183,12 @@ body{
 
         .sidebar {
             width: 220px;
-            background: #fff;
+            background:#fff; 
             height: 100vh;
             padding: 20px;
             border-right: 1px solid #ddd;
         }
 
-        .sidebar h2 {
-            color: #2c7a7b;
-        }
 
         .sidebar ul {
             list-style: none;
@@ -205,7 +202,7 @@ body{
         }
 
         .sidebar li.active {
-            background: #e6fffa;
+            background: #a7c3db;
         }
 
         .main {
@@ -275,6 +272,11 @@ body{
             background-color: #2d4f6c;
             color: #a1c9ed;
         }
+        .btn5{
+            float: right;
+            background-color: #354049;
+            color: #a1c9ed;
+        }
         
          .modal {
             display: none;
@@ -308,24 +310,15 @@ body{
 </head>
 
 <body>
-    <div class="nav">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img src="https://i.pinimg.com/736x/69/d9/4f/69d94fa9277f58352c486fb727377245.jpg" width="25px"
-                height="30px" alt="">
-
-            <h2 class="head">Todo Web</h2>
-<hr>
-            
-        </nav>
-    </div>
+    
     <div class="container">
 
         <div class="sidebar">
 
-
+        <h2>ToDo Web</h2>
 
             <ul>
-                <li class="active">Overview</li>
+                <li class="active"><a href="{% url 'dashboard' %}"></a>Overview</li>
                 <li>Tasks</li>
                 <li>Categories</li>
                 <li>Calendar</li>
@@ -354,7 +347,7 @@ body{
 
                 <div class="card">
                     <h3>Categories</h3>
-                    <p>{{ categories }}</p>
+                    <!-- <p>{{ categories }}</p> -->
 
                     
         </div>
@@ -383,6 +376,9 @@ body{
                 </a>
                 <a href="{% url 'deletetask' task.id %}">
                     <button class="btn4">Delete</button>
+                </a>
+                <a href="{% url 'completetask' task.id %}">
+                    <button class="btn5">Completetask</button>
                 </a>
                 
                 {% endfor %}
