@@ -9,6 +9,7 @@
         body {
             font-family: Arial;
             background: #f5f7fb;
+           
         }
 
         .container {
@@ -95,6 +96,7 @@
             margin-top: 20px;
 
         }
+
         .btn9 {
             background-color: #e4e5ea;
             color: black;
@@ -107,9 +109,79 @@
             display: inline-block;
             width: 150px;
         }
+
         .btn9:hover {
             background-color: #a7c3db;
             color: white;
+        }
+
+        .calendar {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        .calendar header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar header button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calendar header button:hover {
+            background: #0056b3;
+        }
+
+        .calendar h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .weekdays,
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+        }
+
+        .weekdays div {
+            font-weight: bold;
+            padding: 10px 0;
+            background: #eee;
+        }
+
+        .days div {
+            padding: 10px 0;
+            cursor: pointer;
+        }
+
+        .days div:hover {
+            background: #d3e0ff;
+            border-radius: 5px;
+        }
+
+        .today {
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        .new{
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f4f4f4;
         }
     </style>
 </head>
@@ -129,15 +201,80 @@
                 </ul>
             </div>
             <a href="{% url 'logout' %}">
-            <button class="btn1">Logout</button>
-</a>
+                <button class="btn1">Logout</button>
+            </a>
         </div>
 
-        <div>
-            <label>Due date</label>
-            <input type="date" name="due_date">
-        </div>
-    </div>
+        <div class="new">
+            <div class="calendar">
+                <header>
+                    <button id="prev">&#10094;</button>
+                    <h2 id="month-year"></h2>
+                    <button id="next">&#10095;</button>
+                </header>
+                <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="days" id="days"></div>
+            </div>
+
+            <script>
+                const monthYear = document.getElementById("month-year");
+                const daysContainer = document.getElementById("days");
+                const prevBtn = document.getElementById("prev");
+                const nextBtn = document.getElementById("next");
+
+                let date = new Date();
+
+                function renderCalendar() {
+                    const year = date.getFullYear();
+                    const month = date.getMonth();
+
+                    monthYear.textContent = date.toLocaleString("default", { month: "long" }) + " " + year;
+
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const lastDate = new Date(year, month + 1, 0).getDate();
+
+                    daysContainer.innerHTML = "";
+
+                    for (let i = 0; i < firstDay; i++) {
+                        daysContainer.innerHTML += `<div></div>`;
+                    }
+
+                    for (let day = 1; day <= lastDate; day++) {
+                        const today = new Date();
+                        const isToday = day === today.getDate() &&
+                            month === today.getMonth() &&
+                            year === today.getFullYear();
+
+                        daysContainer.innerHTML += `<div class="${isToday ? 'today' : ''}">${day}</div>`;
+                    }
+                }
+
+                prevBtn.addEventListener("click", () => {
+                    date.setMonth(date.getMonth() - 1);
+                    renderCalendar();
+                });
+
+                nextBtn.addEventListener("click", () => {
+                    date.setMonth(date.getMonth() + 1);
+                    renderCalendar();
+                });
+
+                renderCalendar();
+            </script>
+
+</body>
+
+</html>
+</div>
+</div>
 </body>
 
 </html>
