@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Create Task</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calendar</title>
     <style>
         body {
             font-family: Arial;
@@ -27,69 +28,9 @@
             margin: 10px 0;
         }
 
-        .main {
-            flex: 1;
-            padding: 30px;
-        }
-
-        .form-box {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            height: 100%;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        .row {
-            display: flex;
-            gap: 30px;
-        }
-
-        .row div {
-            flex: 1;
-        }
-
-        .priority span {
-            padding: 6px 12px;
-            border-radius: 10px;
-            margin-right: 8px;
-        }
-
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: none;
-            margin-right: 10px;
-        }
-
-        .create {
-            background: #2d4f6c;
-            color: white;
-        }
-
-        .cancel {
-            background: #e6fffa;
-        }
-
-        .box {
-            height: 100px;
-            padding: auto;
-        }
-
         .btn7 {
 
-            background-color: #a7c3db;
+            background-color: #e4e5ea;
             color: black;
             font-size: 16px;
             padding: 15px 32px;
@@ -128,7 +69,7 @@
         }
 
         .btn8 {
-            background-color: #e4e5ea;
+            background-color: #a7c3db;
             color: black;
             font-size: 16px;
             padding: 15px 32px;
@@ -171,12 +112,10 @@
             color: white;
         }
     </style>
-
 </head>
 
 <body>
     <div class="container">
-
         <div class="sidebar">
 
             <h2>✔ Todo Web</h2>
@@ -194,48 +133,11 @@
 </a>
         </div>
 
-        <div class="main">
-
-            <h2>Create New Task</h2>
-
-            <form method="POST" action="" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                <label>Task Title</label>
-                <input type="text" name="title" placeholder="eg., Q2 Planning">
-
-                <label>Description</label>
-                <textarea name="description" class="box" placeholder="Add details..."></textarea>
-
-                <h3>Details</h3>
-
-                <div class="row">
-
-                    <div>
-                        <label>Due date</label>
-                        <input type="date" name="due_date">
-                    </div>
-
-                    <div>
-                        <label>Time</label>
-                        <input type="time" name="time">
-                    </div>
-
-
-
-                    <div>
-                        <label>Priority</label>
-                        <select name="priority">
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <button type="submit" class="btn create">Create Task</button>
-                <a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
-
-            </form>
+        <div>
+            <label>Due date</label>
+            <input type="date" name="due_date">
+        </div>
+    </div>
 </body>
+
+</html>

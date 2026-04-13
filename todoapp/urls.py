@@ -12,7 +12,8 @@ urlpatterns = [
     path('complete/<int:task_id>/',views.complete,name="complete"),
     path('compltetask/<int:task_id>/', views.completetask, name='completetask'),
     path('delete/<int:task_id>/',views.deletetask,name='deletetask'),
-    # path('complete/',views.completetask,name="complete")
+    path('calendar/', views.calendar, name='calendar'),
+    path('profile/',views.profile,name="profile"),
 
 
 ]

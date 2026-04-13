@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Task,Category
+from django.contrib.auth.decorators import login_required
+from .models import Task
 from .forms import TaskForm
-from todoapp.models import Category
-
+from django.shortcuts import render
+import calendar
+from datetime import datetime
 
 
 # # Create your views here.
@@ -22,7 +23,7 @@ def card(request):
 
            if user is not None:
                login(request, user)
-               return redirect("dashboard")
+               return redirect('dashboard')
 
 
         return render(request,'card.html')
@@ -49,15 +50,13 @@ def logout_view(request):
 
     return redirect("card")
 
-
+@login_required(login_url='login')
 def dashboard(request):
     tasks = Task.objects.all()
         
     active_tasks=tasks.filter(is_completed=False).count()
     completed_tasks=tasks.filter(is_completed=True).count()
-    categories=Category.objects.all()
-    category_count=categories.count()
-
+   
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -70,18 +69,11 @@ def dashboard(request):
         'tasks': tasks,
         'active_tasks': active_tasks,
         'completed_tasks': completed_tasks,
-        'categories':categories,
-        'category_count':category_count,
         'form': form
     })
 
-Category.objects.create(name="Home")
-Category.objects.create(name="Work")
-Category.objects.create(name="Personal")
-Category.objects.create(name="Client")
 
 def addtask(request):
-    categories = Category.objects.all()
 
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -89,7 +81,8 @@ def addtask(request):
         due_date = request.POST.get('due_date')
         time = request.POST.get('time')
         priority = request.POST.get('priority')
-        category_id = request.POST.get('category') or None
+        
+    
 
         
         Task.objects.create(
@@ -98,12 +91,11 @@ def addtask(request):
             due_date=due_date,
             time=time,
             priority=priority,
-            category_id=category_id
         )
 
         return redirect('dashboard')
 
-    return render(request, 'addtask.html', {'categories': categories})
+    return render(request, 'addtask.html')
 
 def updatetask(request, task_id):
     task = Task.objects.get(id=task_id)
@@ -143,3 +135,14 @@ def completetask(request, task_id):
     task.is_completed = True
     task.save()
     return redirect('dashboard')
+
+# def calender(request):
+#     return render(request,'calender.html')
+
+
+def calendar(request):
+    
+    return render(request, 'calendar.html')
+
+def profile(request):
+    return render(request, 'profile.html')

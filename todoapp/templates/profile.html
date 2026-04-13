@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Create Task</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
     <style>
         body {
             font-family: Arial;
@@ -27,69 +29,9 @@
             margin: 10px 0;
         }
 
-        .main {
-            flex: 1;
-            padding: 30px;
-        }
-
-        .form-box {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            height: 100%;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        .row {
-            display: flex;
-            gap: 30px;
-        }
-
-        .row div {
-            flex: 1;
-        }
-
-        .priority span {
-            padding: 6px 12px;
-            border-radius: 10px;
-            margin-right: 8px;
-        }
-
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: none;
-            margin-right: 10px;
-        }
-
-        .create {
-            background: #2d4f6c;
-            color: white;
-        }
-
-        .cancel {
-            background: #e6fffa;
-        }
-
-        .box {
-            height: 100px;
-            padding: auto;
-        }
-
         .btn7 {
 
-            background-color: #a7c3db;
+            background-color: #e4e5ea;
             color: black;
             font-size: 16px;
             padding: 15px 32px;
@@ -154,8 +96,38 @@
             margin-top: 20px;
 
         }
+
+        .form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 50px auto;
+            margin-bottom: 15px;
+
+        }
+
+        .img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+
+        .form label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
         .btn9 {
-            background-color: #e4e5ea;
+            background-color: #a7c3db;
             color: black;
             font-size: 16px;
             padding: 15px 32px;
@@ -170,13 +142,20 @@
             background-color: #a7c3db;
             color: white;
         }
-    </style>
+        .btn2 {
+            background: #165899;
+            color: rgb(219, 223, 228);
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 20px;
 
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-
         <div class="sidebar">
 
             <h2>✔ Todo Web</h2>
@@ -194,48 +173,29 @@
 </a>
         </div>
 
-        <div class="main">
+        <div class="form">
+            <form method="POST">
 
-            <h2>Create New Task</h2>
-
-            <form method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <label>Task Title</label>
-                <input type="text" name="title" placeholder="eg., Q2 Planning">
+                <img src="https://i.pinimg.com/1200x/38/6c/52/386c5283f14bdca0fa14e28dd18fb574.jpg" alt="Work Image"
+                    width="30%" height="50%">
 
-                <label>Description</label>
-                <textarea name="description" class="box" placeholder="Add details..."></textarea>
+                <br><br>
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="username">
 
-                <h3>Details</h3>
+                <label for="email">Email:</label>
+                <input type="text" name="email" placeholder="Email">
 
-                <div class="row">
-
-                    <div>
-                        <label>Due date</label>
-                        <input type="date" name="due_date">
-                    </div>
-
-                    <div>
-                        <label>Time</label>
-                        <input type="time" name="time">
-                    </div>
-
-
-
-                    <div>
-                        <label>Priority</label>
-                        <select name="priority">
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <button type="submit" class="btn create">Create Task</button>
-                <a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Password">
+                <br><br>
+                <button class="btn2">Create Account</button>
 
             </form>
+        </div>
+    </div>
 </body>
+
+</html>
